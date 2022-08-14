@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="room">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            {% for room in rooms %}
+            <div class="col-lg-3 mt-3 pt-5 text-center">
+                <div class="room-card">
+                    <h2>{{room.name}}</h2>
+                    <a href="{% url 'room:room' room.id %}" class="btn btn-outline-white btn-success">Join room</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+{{room.id|json_script:"json-roomname "}}
+
+
+<script>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent)
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        +roomName
+        +'/'
+    );
+
+    chatSocket.onmessage = function(e){
+        console.log('onmessage')
+    }
+    chatSocket.onclose = function(e){
+        console.log('end')
+    }
+</script>
+
+{% endblock %}

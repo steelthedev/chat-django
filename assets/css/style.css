@@ -1,0 +1,27 @@
+
+body{
+    background: #222;
+    color: #fff;
+}
+
+.nav-btn{
+    padding:10px;
+    border:1px solid;
+}
+
+
+.room-card{
+    padding: 15px;
+    background: #ffffff;
+    color: #111;
+    border-radius: 4px;
+    
+}
+
+.chat{
+    background: #eee;
+    color: #111;
+    margin-bottom: 10px;
+    height: 400px;
+    overflow-y: auto;
+}

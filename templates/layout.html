@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Chat</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+            <a href="" class="navbar-brand">DjangoChat</a>
+            <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMobileMenu"
+            aria-controls="#toggleMobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="oi oi-menu"><i class="fa fa-bars"></i></span>
+            </button>
+    
+            <div class="collapse navbar-collapse " id="toggleMobileMenu">
+                <ul class="navbar-nav ms-auto p-3  ">
+                    <li class="nav-item">
+                        <a href="{% url 'front' %} " class="nav-link nav-w">Home</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'room:rooms' %} " class="nav-link nav-w">Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %} " class="nav-link shadow-none btn nav-btn nav-w">Logout</a>
+                    </li>
+                    {% else %}
+
+                    <li class="nav-item">
+                        <a href="{% url 'login' %} " class="nav-link nav-w">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'signup' %} " class="nav-link shadow-none btn nav-btn nav-w">Sign Up</a>
+                    </li>
+
+                    {% endif %}
+    
+                   
+        </nav>
+        {% block content %}
+
+        {% endblock %}
+
+        {% block scripts %}
+
+        {% endblock%}
+    </body>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</html>
